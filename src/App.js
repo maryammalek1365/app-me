@@ -1,61 +1,32 @@
-import  {User} from "./User";
-import  Course from "./Course";
-import logo from './logo.svg';
-import { useState } from "react";
-import './App.css';
+import react from "react";
+import {useState} from "react"
+import "./App.css"
+import axios from "axios";
+import { useEffect } from "react";
+import { BrowserRouter as Router,Routes,Route,Link,Navigate } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import {Contact} from "./pages/Contact";
+import { Nav } from "./pages/Nav";
 
-function App() {
-  const [courseList,setCourseList]=useState([]);
-  const [newCourse,setNewcourse]=useState("");
-  const handleChange=(event)=>{
-    setNewcourse(event.target.value)
-  };
-  const addCourse=()=>{
-    const course={
-      id:courseList.length===0?1:courseList[courseList.length-1].id+1,
-      courseName:newCourse,
-  isCompleted:false
-    }
-
-  setCourseList([...courseList,course])
-  console.log(courseList)
+function App(){
     
-  }
-
-  const deleteCourse=(courseId)=>{
-    setCourseList(courseList.filter((course)=>courseId!==course.id))
-  };
- const completeCourse=(courseId)=>{
-  const newCourseList=courseList.map((course)=>{
-    if(course.id===courseId)return{...course,isCompleted:!course.isCompleted}
-    else{ return(course)
-}
-  })
-  setCourseList(newCourseList)
+    return(
+        <div className="App">
+    <Router>
+        <div> sarvin style </div>
+    <Nav/>
+        <Routes>
+   <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<div>not found</div>} />
+        </Routes>
+        <div>this is footer</div>
+        </Router>        
+        
+   
+       </div>
+    );
  }
-  ///
-
- //setCourseList([...courseList,newCourse])
- //console.log(courseList)
-//
-  return (
- <div className="App">
-   <div className="add-Course">
-   <input type="text" onChange={handleChange}></input>
-  <button  onClick={addCourse}>add course </button>
-  </div>
-
-
-<div className="list">
-  {courseList.map((course,index)=>{
-    return( 
-      <Course key={index} course={course} deleteCourse={deleteCourse}
-      completeCourse={completeCourse}/>
-     )
-  })}
-    </div>
-   </div>
-  )
-}
-
 export default App;
