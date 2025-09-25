@@ -8,6 +8,7 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import {Contact} from "./pages/Contact";
 import { Nav } from "./pages/Nav";
+import { Profile } from "./pages/Profile";
 
 function App(){
     
@@ -20,12 +21,12 @@ function App(){
    <Route path="/" element={<Home />} />
   <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/profile/:name?/:id?"   element={<Profile/>}/>
         <Route path="*" element={<div>not found</div>} />
         </Routes>
         <div>this is footer</div>
         </Router>        
         
-   
        </div>
     );
  }
