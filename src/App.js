@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import { useState, createContext } from "react"
 import "./App.css"
 import axios from "axios";
@@ -10,36 +10,23 @@ import { Contact } from "./pages/Contact";
 import { Nav } from "./pages/Nav";
 import { Profile } from "./pages/Profile";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { SubmitForm } from "./Component/SubmitForm"
 
 
 export const profileContext = createContext();
 
 function App() {
     const [username, setUsername] = useState("sarvin")
-    const client = new QueryClient({
-        defaultOptions: {
-            queries: { refetchOnWindowFocus: false }
-        }
-    })
     return (
         <div className="App">
-            <QueryClientProvider client={client}>
-                <profileContext.Provider value={{ username, setUsername }} >
-                    <Router>
-                        <div> sarvin style </div>
-                        <Nav />
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="*" element={<div>not found</div>} />
-                        </Routes>
-                        <div>this is footer</div>
-                    </Router>
-                </profileContext.Provider>
-            </QueryClientProvider>
+
+
+
+            <SubmitForm />
+
+
+
+
         </div>
     );
 }
