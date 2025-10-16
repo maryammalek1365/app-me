@@ -1,15 +1,19 @@
-import { useQueries } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export const useGetCat = () => {
-  const { data, isloading, refetch } = useQueries(["Cat"],
-    async () => {
-      return axios.get("http://catfact.nninja/fact")
-        .then((res) => res.data);
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["Cat"],
+    queryFn: async () => {
+      const res = await axios.get("https://catfact.ninja/fact");
+      return res.data;
     }
-  );
+  });
+
   const refetchdata = () => {
-    alert("data refetch")
-  }
-  return { data, isloading, refetchdata }
-}
+    alert("data refetch");
+    refetch();
+  };
+
+  return { data, isLoading, refetchdata };
+};
