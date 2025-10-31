@@ -1,16 +1,26 @@
+import { ACTION_TYPE } from "./factAction"
 export const initialState = {
   loading: false,
-  fact: "",
+  fact: " ",
   error: false
 }
 export const factReducer = (state, action) => {
-  if (action.type === 'fetch_start')
-    return { loading: true, fact: "", error: false };
+  switch (action.type) {
+    case ACTION_TYPE.Fetch_start:
+      return { loading: true, fact: " ", error: false };
 
-  if (action.type === 'fetch_success')
-    return { loading: false, fact: "action.data", error: false };
+    case ACTION_TYPE.fetch_success:
+      return { loading: false, fact: action.data, error: false };
 
-  if (action.type === 'fetch_error')
-    return { loading: false, fact: "", error: true };
 
+
+
+
+    case ACTION_TYPE.fetch_error:
+      return { loading: false, fact: " ", error: true };
+
+
+    default:
+      return state;
+  }
 };
