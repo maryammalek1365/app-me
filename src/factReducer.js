@@ -1,4 +1,5 @@
 import { ACTION_TYPE } from "./factAction"
+
 export const initialState = {
   loading: false,
   fact: " ",
