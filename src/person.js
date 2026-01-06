@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 export const Person=(props)=>{
   return(
     <div >
@@ -13,4 +14,11 @@ export const Person=(props)=>{
        
     </div>
   )
+}
+Person.propTypes={
+  name:propTypes.string ,
+  email:propTypes.string ,
+  age:propTypes.number,
+  ismarried:propTypes.bool,
+  courses:propTypes.arrayOf(propTypes.string)
 }
